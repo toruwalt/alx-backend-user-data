@@ -7,8 +7,6 @@ from typing import List, TypeVar
 
 class Auth:
     """Class that authenticates"""
-    def __init__(self) -> None:
-        pass
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         return False
