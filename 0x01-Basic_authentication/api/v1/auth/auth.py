@@ -16,10 +16,10 @@ class Auth:
     def authorization_header(self, request=None) -> str:
         return None
     
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None):
         return None
     
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None):
         """Gets the current user from the request.
         """
         return None
