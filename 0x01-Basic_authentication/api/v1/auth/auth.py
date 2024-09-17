@@ -16,8 +16,3 @@ class Auth:
     
     def current_user(self, request=None):
         return None
-    
-    def current_user(self, request=None):
-        """Gets the current user from the request.
-        """
-        return None
