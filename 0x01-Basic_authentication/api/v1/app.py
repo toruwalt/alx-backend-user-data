@@ -8,6 +8,7 @@ from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
 import os
 from api.v1.auth.auth import Auth
+from api.v1.auth.basic_auth import Basic_Auth
 
 
 app = Flask(__name__)
@@ -16,9 +17,11 @@ CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 auth = None
 auth_type = os.environ.get("AUTH_TYPE", "basic")
 auth_type = getenv('AUTH_TYPE', 'auth')
+auth_type = getenv('AUTH_TYPE', 'basic_auth')
 if auth_type == 'auth':
     auth = Auth()
-
+if auth_type == 'basic_auth':
+    auth = Basic_Auth()
 
 @app.errorhandler(404)
 def not_found(error) -> str:
