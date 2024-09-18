@@ -23,6 +23,7 @@ if auth_type == 'auth':
 if auth_type == 'basic_auth':
     auth = Basic_Auth()
 
+
 @app.errorhandler(404)
 def not_found(error) -> str:
     """ Not found handler
@@ -51,14 +52,14 @@ def before_request():
     """
 
     excluded_paths = ['/api/v1/status/', '/api/v1/unauthorized/',
-                     '/api/v1/forbidden/']
+                      '/api/v1/forbidden/']
     if auth.require_auth(request.path, excluded_paths):
-            auth_header = auth.authorization_header(request)
-            user = auth.current_user(request)
-            if auth_header is None:
-                abort(401)
-            if user is None:
-                abort(403)
+        auth_header = auth.authorization_header(request)
+        user = auth.current_user(request)
+        if auth_header is None:
+            abort(401)
+        if user is None:
+            abort(403)
 
 
 if __name__ == "__main__":
