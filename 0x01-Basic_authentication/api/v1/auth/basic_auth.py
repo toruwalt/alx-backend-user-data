@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Basic Auth Module"""
+from typing import TypeVar
 from api.v1.auth.auth import Auth
+from models.user import User
 import base64
 
 
@@ -36,7 +38,9 @@ class BasicAuth(Auth):
     def extract_user_credentials(self,
                                  decoded_base64_authorization_header:
                                  str) -> (str, str):  # type: ignore
-        """eturns the user email and password from the Base64 decoded value."""
+        """returns the user email and password
+        from the Base64 decoded value.
+        """
         if decoded_base64_authorization_header:
             if isinstance(decoded_base64_authorization_header, str):
                 if decoded_base64_authorization_header.__contains__(':'):
@@ -44,3 +48,17 @@ class BasicAuth(Auth):
                 return None, None
             return None, None
         return None, None
+
+    def user_object_from_credentials(self, user_email: str,
+                                     user_pwd:
+                                     str) -> TypeVar('User'):  # type: ignore
+        """Returns email and password"""
+        if user_email and isinstance(user_email, str):
+            if user_pwd and isinstance(user_pwd, str):
+                if isinstance(user_pwd, User):
+                    if User.display_name():
+                        return "Yes"
+                    return None
+                return None
+            return None
+        return None
