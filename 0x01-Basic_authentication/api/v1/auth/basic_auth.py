@@ -40,8 +40,7 @@ class BasicAuth(Auth):
         if decoded_base64_authorization_header:
             if isinstance(decoded_base64_authorization_header, str):
                 if decoded_base64_authorization_header.__contains__(':'):
-                    return tuple(decoded_base64_authorization_header.
-                                 split(':'))
+                    return decoded_base64_authorization_header.split(':')
                 return None, None
             return None, None
         return None, None
