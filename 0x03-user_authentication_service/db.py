@@ -8,8 +8,7 @@ from sqlalchemy.orm.session import Session
 from sqlalchemy.exc import InvalidRequestError, NoResultFound
 from typing import Tuple
 
-from user import Base
-from user import User
+from user import Base, User
 
 
 class DB:
@@ -44,7 +43,6 @@ class DB:
             new_user = None
         return new_user
 
-    
     def find_user_by(self, **kwargs) -> User:
         """Finds a user based on a set of filters.
         """
@@ -55,7 +53,8 @@ class DB:
                 values.append(value)
             else:
                 raise InvalidRequestError()
-        result = self._session.query(User).filter(tuple_(*fields).in_([tuple(values)])
+        result = self._session.query(User).filter(
+            tuple_(*fields).in_([tuple(values)])
         ).first()
         if result is None:
             raise NoResultFound()
